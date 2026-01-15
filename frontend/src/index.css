@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+
+@theme {
+  --font-family-manrope: 'Manrope', sans-serif;
+  --font-family-outfit: 'Outfit', sans-serif;
+  
+  --color-background: rgb(210 17% 98%);
+  --color-foreground: rgb(165 45% 9%);
+  --color-card: rgb(0 0% 100%);
+  --color-card-foreground: rgb(165 45% 9%);
+  --color-popover: rgb(0 0% 100%);
+  --color-popover-foreground: rgb(165 45% 9%);
+  --color-primary: rgb(165 45% 9%);
+  --color-primary-foreground: rgb(0 0% 100%);
+  --color-secondary: rgb(217 91% 28%);
+  --color-secondary-foreground: rgb(0 0% 100%);
+  --color-muted: rgb(210 17% 95%);
+  --color-muted-foreground: rgb(215 14% 50%);
+  --color-accent: rgb(160 84% 39%);
+  --color-accent-foreground: rgb(0 0% 100%);
+  --color-destructive: rgb(0 84.2% 60.2%);
+  --color-destructive-foreground: rgb(0 0% 98%);
+  --color-border: rgb(214 32% 91%);
+  --color-input: rgb(214 32% 91%);
+  --color-ring: rgb(160 84% 39%);
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body { background-color: #f9fafb;
+    /* background-color: var(--color-background); */
+    color: var(--color-foreground);
+    font-family: var(--font-family-manrope);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-outfit);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+}
+
+.footer{background-color: #0b221c;}
+.section{background-color: #0b221c;}
+.review{background-color: #f9fafb;}
+.courses{background-color: #f9fafb;}
