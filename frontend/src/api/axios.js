@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getToken, logout } from '../utils/auth';
 
-const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
+const API_BASE_URL = https://sumit-ki-pathshala.onrender.com
 
 const axiosInstance = axios.create({
   baseURL: `${API_BASE_URL}/api`,
