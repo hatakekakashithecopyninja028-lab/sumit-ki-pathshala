@@ -1,24 +1,27 @@
-import { useState } from 'react';
-import { User, Users, Phone, Mail, BookOpen, MessageSquare } from 'lucide-react';
-import axiosInstance from '../api/axios';
-import { toast } from 'sonner';
+import React, { useState } from "react";
+import axios from "axios";
+import { Mail, User, Users, Phone, BookOpen, MessageSquare } from "lucide-react";
+
+const classes = [1,2,3,4,5,6,7,8,9,10,11,12];
 
 const Enquiry = () => {
   const [formData, setFormData] = useState({
-    student_name: '',
-    parent_name: '',
-    class_level: '',
-    phone: '',
-    email: '',
-    interested_course: '',
-    message: '',
+    name: "",
+    parent_name: "",
+    studentClass: "",
+    phone: "",
+    email: "",
+    course: "",
+    message: "",
   });
+
   const [loading, setLoading] = useState(false);
 
-  const classes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -26,26 +29,36 @@ const Enquiry = () => {
     setLoading(true);
 
     try {
-      await axiosInstance.post('/enquiries', formData);
-      toast.success('Enquiry submitted successfully! We will contact you soon via WhatsApp.');
+      await axios.post("http://localhost:8000/api/enquiry/detail", {
+        name: formData.name,
+        parent_name: formData.parent_name,
+        studentClass: formData.studentClass,
+        phone: formData.phone,
+        email: formData.email,
+        course: formData.course,
+        message: formData.message,
+      });
+
+      alert("Enquiry submitted successfully 🎉");
+
       setFormData({
-        student_name: '',
-        parent_name: '',
-        class_level: '',
-        phone: '',
-        email: '',
-        interested_course: '',
-        message: '',
+        name: "",
+        parent_name: "",
+        studentClass: "",
+        phone: "",
+        email: "",
+        course: "",
+        message: "",
       });
     } catch (error) {
-      console.error('Enquiry error:', error);
-      toast.error('Failed to submit enquiry. Please try again.');
+      console.error(error);
+      alert("Something went wrong 😢");
     } finally {
       setLoading(false);
     }
   };
 
-  return (
+ return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
@@ -66,11 +79,11 @@ const Enquiry = () => {
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500" />
                   <input
                     id="student_name"
-                    name="student_name"
+                    name="name"
                     type="text"
                     required
                     data-testid="enquiry-student-name-input"
-                    value={formData.student_name}
+                    value={formData.name}
                     onChange={handleChange}
                     className="w-full pl-10 pr-4 py-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
                     placeholder="Student's full name"
@@ -106,10 +119,10 @@ const Enquiry = () => {
                 </label>
                 <select
                   id="class_level"
-                  name="class_level"
+                  name="studentClass"
                   required
                   data-testid="enquiry-class-select"
-                  value={formData.class_level}
+                  value={formData.studentClass}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
                 >
@@ -170,12 +183,12 @@ const Enquiry = () => {
               <div className="relative">
                 <BookOpen className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500" />
                 <input
-                  id="interested_course"
-                  name="interested_course"
+                  id="course"
+                  name="course"
                   type="text"
                   required
                   data-testid="enquiry-course-input"
-                  value={formData.interested_course}
+                  value={formData.course}
                   onChange={handleChange}
                   className="w-full pl-10 pr-4 py-3 border border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
                   placeholder="e.g., Mathematics for Class 10"
@@ -221,6 +234,6 @@ const Enquiry = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Enquiry;

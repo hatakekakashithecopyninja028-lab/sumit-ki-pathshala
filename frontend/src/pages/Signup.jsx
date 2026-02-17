@@ -10,8 +10,8 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    password: '',
     phone: '',
+    password: '',
   });
   const [loading, setLoading] = useState(false);
 
@@ -24,25 +24,21 @@ const Signup = () => {
     setLoading(true);
 
     try {
-      await axiosInstance.post('/auth/register', formData);
-      const loginResponse = await axiosInstance.post('/auth/login', {
-        email: formData.email,
-        password: formData.password,
-      });
-      setToken(loginResponse.data.access_token);
-      setUser(loginResponse.data.user);
+      const response = await axiosInstance.post('/auth/signup', formData);
+      setToken(response.data.access_token);
+      setUser(response.data.user);
       toast.success('Account created successfully!');
       navigate('/dashboard');
     } catch (error) {
       console.error('Signup error:', error);
-      toast.error(error.response?.data?.detail || 'Signup failed. Please try again.');
+      toast.error(error.response?.data?.message || error.response?.data?.detail || 'Signup failed. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-white">
+      <div>   <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-md w-full">
         <div className="bg-white rounded-xl shadow-lg p-8">
           <div className="text-center mb-8">
@@ -154,8 +150,8 @@ const Signup = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
-};
-
-export default Signup;
+    </div></div>
+    )
+  }
+  
+  export default Signup

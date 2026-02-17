@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom';
 import { Clock, User as UserIcon, IndianRupee } from 'lucide-react';
 
 const CourseCard = ({ course }) => {
+  const courseId = course._id || course.id;
+  
   return (
-    <div className="course-card group" data-testid={`course-card-${course.id}`}>
+    <div className="course-card group" data-testid={`course-card-${courseId}`}>
       <div className="relative h-48 overflow-hidden">
         <img
           src={course.thumbnail_url || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400'}
@@ -19,14 +21,14 @@ const CourseCard = ({ course }) => {
       </div>
 
       <div className="p-6">
-        <h3 className="text-xl font-bold text-primary mb-2 group-hover:text-accent transition-colors">
+        <h3 className="text-xl font-bold text-black mb-2 group-hover:text-accent transition-colors">
           {course.title}
         </h3>
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+        <p className="text-gray-500 text-sm mb-4 line-clamp-2">
           {course.description}
         </p>
 
-        <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+        <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
           <div className="flex items-center space-x-1">
             <UserIcon className="h-4 w-4" />
             <span>{course.teacher_name}</span>
@@ -38,13 +40,13 @@ const CourseCard = ({ course }) => {
         </div>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-1 text-2xl font-bold text-primary">
+          <div className="flex items-center space-x-1 text-2xl font-bold text-black">
             <IndianRupee className="h-6 w-6" />
             <span>{course.price.toLocaleString('en-IN')}</span>
           </div>
           <Link
-            to={`/courses/${course.id}`}
-            data-testid={`view-course-${course.id}`}
+            to={`/courses/${courseId}`}
+            data-testid={`view-course-${courseId}`}
             className="bg-accent text-white px-6 py-2 rounded-full font-semibold hover:bg-accent/90 transition-all hover:-translate-y-0.5 active:scale-95"
           >
             View Details

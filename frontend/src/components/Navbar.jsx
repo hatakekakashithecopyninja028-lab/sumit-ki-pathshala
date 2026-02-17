@@ -1,13 +1,15 @@
 import { Link, useLocation } from 'react-router-dom';
-import { BookOpen, LogIn, LogOut, User, Menu, X } from 'lucide-react';
+import { BookOpen, LogIn, LogOut, User, Menu, X, Shield } from 'lucide-react';
 import { useState } from 'react';
-import { isAuthenticated, getUser, logout } from '../utils/auth';
+import { isAuthenticated, getUser, logout, isAdmin } from '../utils/auth';
+import AdminDashboard from '../pages/AdminDashboard';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const user = getUser();
   const isAuth = isAuthenticated();
+  const userIsAdmin = isAdmin();
 
   const handleLogout = () => {
     logout();
@@ -18,6 +20,7 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'Courses', path: '/courses' },
     { name: 'Enquiry', path: '/enquiry' },
+  
   ];
 
   return (
@@ -45,8 +48,15 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            {/* <div> <span> <Link to="/admin/login" className="text-black hover:text-accent transition-colors ">
+                  admin
+                </Link></span></div> */}
+            
+          
             {isAuth ? (
               <>
+            
+             
                 <Link
                   to="/dashboard"
                   data-testid="nav-dashboard"
@@ -65,6 +75,8 @@ const Navbar = () => {
                 </button>
               </>
             ) : (
+            
+         
               <Link
                 to="/login"
                 data-testid="login-button"
@@ -73,6 +85,7 @@ const Navbar = () => {
                 <LogIn className="inline-block h-5 w-5 mr-2" />
                 Login
               </Link>
+             
             )}
           </div>
 
@@ -103,6 +116,15 @@ const Navbar = () => {
             ))}
             {isAuth ? (
               <>
+             
+                  <Link
+                    to="/admin"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-2 text-accent font-medium"
+                  >
+                    Admin Panel
+                  </Link>
+         
                 <Link
                   to="/dashboard"
                   onClick={() => setMobileMenuOpen(false)}

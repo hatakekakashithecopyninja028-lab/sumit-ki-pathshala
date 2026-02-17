@@ -19,10 +19,10 @@ const Dashboard = () => {
 
     const fetchEnrolledCourses = async () => {
       try {
-        const response = await axiosInstance.get('/courses');
+        const response = await axiosInstance.get('/enrolled/getallproduct');
         const allCourses = response.data;
         const enrolled = allCourses.filter(course => 
-          user?.enrolled_courses?.includes(course.id)
+          user?.enrolled_courses?.includes(course._id)
         );
         setEnrolledCourses(enrolled);
       } catch (error) {
@@ -46,20 +46,22 @@ const Dashboard = () => {
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8" data-testid="user-profile-card">
           <div className="flex items-center space-x-4 mb-6">
             <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center">
-              <User className="h-10 w-10 text-accent" />
+              <User className="h-10 w-10 text-accent"  />
+      
+
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-primary">{user.name}</h1>
-              <p className="text-muted-foreground">Student Dashboard</p>
+              <h1 className="text-3xl font-bold text-black">{user.name}</h1>
+              <p className="text-gray-500">Student Dashboard</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="flex items-center space-x-3 text-muted-foreground">
+            <div className="flex items-center space-x-3 text-gray-500">
               <Mail className="h-5 w-5 text-accent" />
               <span>{user.email}</span>
             </div>
-            <div className="flex items-center space-x-3 text-muted-foreground">
+            <div className="flex items-center space-x-3 text-gray-500">
               <Phone className="h-5 w-5 text-accent" />
               <span>{user.phone}</span>
             </div>
@@ -67,15 +69,15 @@ const Dashboard = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl font-bold text-primary mb-6">My Enrolled Courses</h2>
+          <h2 className="text-2xl font-bold text-black mb-6">My Enrolled Courses</h2>
           {loading ? (
             <div className="text-center py-12">
               <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-accent"></div>
             </div>
           ) : enrolledCourses.length === 0 ? (
             <div className="bg-white rounded-xl p-12 text-center" data-testid="no-courses-message">
-              <BookOpen className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-              <p className="text-lg text-muted-foreground mb-4">
+              <BookOpen className="h-16 w-16 text-black mx-auto mb-4" />
+              <p className="text-lg text-gray-500 mb-4">
                 You haven't enrolled in any courses yet.
               </p>
               <button

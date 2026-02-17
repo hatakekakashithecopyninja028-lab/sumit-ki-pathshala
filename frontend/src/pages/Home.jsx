@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, Users, Award, Star, GraduationCap } from 'lucide-react';
 import axiosInstance from '../api/axios';
 import CourseCard from '../components/CourseCard';
+import AdminDashboard from './AdminDashboard';
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -193,6 +194,7 @@ const Home = () => {
               View All Courses
               <ArrowRight className="inline-block ml-2 h-5 w-5" />
             </Link>
+           
           </div>
         </div>
       </section>

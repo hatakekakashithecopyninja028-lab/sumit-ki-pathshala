@@ -16,9 +16,16 @@ const Courses = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axiosInstance.get('/courses');
-        setCourses(response.data);
-        setFilteredCourses(response.data);
+        const response = await axiosInstance.get('/enrolled/getallproduct');
+        // Map backend field names to frontend expected field names
+        const mappedCourses = response.data.map(course => ({
+          ...course,
+          class_level: course.class_level,
+          teacher_name: course.teacher_name,
+          thumbnail_url: course.thumbnail_url
+        }));
+        setCourses(mappedCourses);
+        setFilteredCourses(mappedCourses);
       } catch (error) {
         console.error('Error fetching courses:', error);
       } finally {

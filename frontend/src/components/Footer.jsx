@@ -34,6 +34,11 @@ const Footer = () => {
                   Enquiry
                 </Link>
               </li>
+                <li>
+                <Link to="/admin/login" className="text-gray-300 hover:text-accent transition-colors">
+                  admin
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -63,13 +68,25 @@ const Footer = () => {
                 <MapPin className="h-5 w-5 text-accent" />
                 <span>delhi, India</span>
               </li>
+                <li className="flex items-center space-x-2 text-gray-300">
+                
+                <span><div> <span> <Link to="/admin/login" className="text-white hover:text-accent transition-colors ">
+                  admin
+                </Link></span></div></span>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
-          <p>&copy; {new Date().getFullYear()} SUMIT KI PATHSHALA. All rights reserved.</p>
-        </div>
+        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300 ">
+          <div><p>&copy; {new Date().getFullYear()} SUMIT KI PATHSHALA. All rights reserved.</p>
+          </div>
+          
+         
+          </div>
+           
+        
+        
       </div>
     </footer>
   );
