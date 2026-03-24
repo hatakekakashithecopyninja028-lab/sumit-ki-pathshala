@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Mail, User, Users, Phone, BookOpen, MessageSquare } from "lucide-react";
+import { toast } from "sonner";
 
 const classes = [1,2,3,4,5,6,7,8,9,10,11,12];
 
@@ -39,7 +40,7 @@ const Enquiry = () => {
         message: formData.message,
       });
 
-      alert("Enquiry submitted successfully 🎉");
+      toast.success("Equiry Submitted Sucessfully We will get back to you soon")
 
       setFormData({
         name: "",
@@ -51,8 +52,8 @@ const Enquiry = () => {
         message: "",
       });
     } catch (error) {
-      console.error(error);
-      alert("Something went wrong 😢");
+      console.log(error)
+      toast.error("Something went wrong 😢");
     } finally {
       setLoading(false);
     }

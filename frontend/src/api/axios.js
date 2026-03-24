@@ -35,3 +35,10 @@ axiosInstance.interceptors.response.use(
 );
 
 export default axiosInstance;
+
+
+
+// import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
+
+
+// https://sumit-ki-pathshala.onrender.com
